@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Expense Tracker</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>Personal Expense Tracker</h1>
+
+<!-- Dashboard -->
+
+<h2>Dashboard</h2>
+
+<h3>Total Spent: ₹{{ total }}</h3>
+
+<h3>Budget: ₹{{ budget }}</h3>
+
+<h3>Remaining Balance: ₹{{ remaining }}</h3>
+
+<div class="warning">
+    {{ warning }}
+</div>
+
+<h3>{{ savings_msg }}</h3>
+
+<hr>
+
+<!-- Add Expense Form -->
+
+<form action="/add" method="POST">
+
+    <input type="text"
+           name="item"
+           placeholder="Expense Name"
+           required>
+
+    <input type="number"
+           step="0.01"
+           name="amount"
+           placeholder="Amount"
+           required>
+
+    <select name="category">
+
+        <option>Food</option>
+        <option>Travel</option>
+        <option>Shopping</option>
+        <option>Bills</option>
+        <option>Other</option>
+
+    </select>
+
+    <button type="submit">
+        Add Expense
+    </button>
+
+</form>
+
+<hr>
+
+<h2>Expenses List</h2>
+
+<table>
+
+<tr>
+    <th>ID</th>
+    <th>Expense</th>
+    <th>Amount</th>
+    <th>Category</th>
+    <th>Action</th>
+</tr>
+
+{% for expense in expenses %}
+
+<tr>
+
+    <td>{{ expense[0] }}</td>
+
+    <td>{{ expense[1] }}</td>
+
+    <td>₹{{ expense[2] }}</td>
+
+    <td>{{ expense[3] }}</td>
+
+    <td>
+        <a href="/delete/{{ expense[0] }}">
+            Delete
+        </a>
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/report">
+    View Report
+</a>
+
+</body>
+</html>
