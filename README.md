@@ -1,4 +1,4 @@
-# Expense Tracker
+# ExpenseTracker
 A simple and user-friendly web application for tracking daily expenses, managing personal finances, and analyzing spending habits.
 
 #Overview:
